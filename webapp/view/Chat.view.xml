@@ -4,29 +4,25 @@
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
 	<Page title="{i18n>homePageTitle}">
 		<content>
-			<List id="chatList" items="{/messages}">
-				<CustomListItem>
-					<HBox justifyContent="{= ${sender} === 'user' ? 'End' : 'Start'}">
-						<Text text="{text}" class="{= ${sender} === 'user' ? 'userMessage' : 'responseMessage'}" />
-					</HBox>
-				</CustomListItem>
+			<List id="messageList" items="{/messages}" showSeparators="None" backgroundDesign="Transparent" showNoData="false">
+				<items>
+					<CustomListItem class="chatList">
+						<VBox alignItems="End" visible="{= ${sender} === 'user' }">
+							<Text text="{text}" class="userMessage" wrapping="true"/>
+						</VBox>
+						<VBox alignItems="Start" visible="{= ${sender} !== 'user' }">
+							<Text text="{text}" class="botMessage" wrapping="true"/>
+						</VBox>
+					</CustomListItem>
+				</items>
 			</List>
-			<f:GridList id="gridList" headerText="GridList header" items="{/messages}">
-				<f:GridListItem>
-					<VBox class="sapUiSmallMargin">
-						<layoutData>
-							<FlexItemData growFactor="1" shrinkFactor="0" />
-						</layoutData>
 
-						<Title text="{sender}" wrapping="true" />
-						<Label text="{text}" wrapping="true" />
-					</VBox>
-				</f:GridListItem>
-			</f:GridList>
-			<HBox>
-				<Input id="chatInput" placeholder="Type a message..." width="100%" value="{/chatMessage}" />
-				<Button text="Send" press="onSendMessage" />
-			</HBox>
 		</content>
+		<footer>
+			<Toolbar>
+				<Input placeholder="Type a message..." value="{/chatMessage}" width="100%" />
+				<Button text="Send" press="onSendMessage" icon="sap-icon://paper-plane" />
+			</Toolbar>
+		</footer>
 	</Page>
 </mvc:View>
