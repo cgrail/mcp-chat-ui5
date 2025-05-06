@@ -1,0 +1,32 @@
+<mvc:View controllerName="ui5.walkthrough.controller.Chat"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+	<Page title="{i18n>homePageTitle}">
+		<content>
+			<List id="chatList" items="{/messages}">
+				<CustomListItem>
+					<HBox justifyContent="{= ${sender} === 'user' ? 'End' : 'Start'}">
+						<Text text="{text}" class="{= ${sender} === 'user' ? 'userMessage' : 'responseMessage'}" />
+					</HBox>
+				</CustomListItem>
+			</List>
+			<f:GridList id="gridList" headerText="GridList header" items="{/messages}">
+				<f:GridListItem>
+					<VBox class="sapUiSmallMargin">
+						<layoutData>
+							<FlexItemData growFactor="1" shrinkFactor="0" />
+						</layoutData>
+
+						<Title text="{sender}" wrapping="true" />
+						<Label text="{text}" wrapping="true" />
+					</VBox>
+				</f:GridListItem>
+			</f:GridList>
+			<HBox>
+				<Input id="chatInput" placeholder="Type a message..." width="100%" value="{/chatMessage}" />
+				<Button text="Send" press="onSendMessage" />
+			</HBox>
+		</content>
+	</Page>
+</mvc:View>

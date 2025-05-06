@@ -1,9 +1,0 @@
-<mvc:View controllerName="ui5.walkthrough.controller.App"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
-	<Page title="{i18n>homePageTitle}">
-		<content>
-			<Button text="Hello World" />
-		</content>
-	</Page>
-</mvc:View>
